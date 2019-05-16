@@ -1,0 +1,35 @@
+{
+  "name": "earnings-chart",
+  "version": "1.0.0",
+  "description": "A chart for earnings",
+  "main": "index.js",
+  "scripts": {
+    "react-dev": "webpack -d --watch",
+    "server-dev": "nodemon server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/math-dot-random/earnings-chart.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/math-dot-random/earnings-chart/issues"
+  },
+  "homepage": "https://github.com/math-dot-random/earnings-chart#readme",
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.1",
+    "babel-preset-react": "^6.23.0",
+    "webpack": "^2.2.1",
+    "webpack-cli": "^3.3.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4",
+    "mysql": "^2.17.1",
+    "path": "^0.12.7",
+    "request": "^2.88.0"
+  }
+}
