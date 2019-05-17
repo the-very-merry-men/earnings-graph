@@ -1,12 +1,15 @@
 const Sequelize = require('sequelize');
 const request = require('request');
 const key = require('../config/api_key.js');
+
+// CONNECT TO DATABASE
 var connection = new Sequelize('front_end', 'root', 'Umairnadeem_1', {
     dialect: 'mysql', dialectOptions: {
         supportBigNumbers: true
     }
 });
 
+// INITIALIZE TABLES
 var Stocks = connection.define('stocks', {
     name: Sequelize.STRING,
     ticker: Sequelize.STRING,
@@ -39,11 +42,14 @@ var EpsRatio = connection.define('eps_ratio', {
     }
 });
 
+// BEGIN SEEDING DATA
 connection.sync({ force: true }).then(() => {
     var symbols;
+    var industry = 'Technology'; /* Change this to preference */
 
+    // Fetch latest stock financials from IEX API
     request({
-        url: `https://cloud.iexapis.com/v1/stock/market/collection/sector?collectionName=Technology&token=${key}`,
+        url: `https://cloud.iexapis.com/v1/stock/market/collection/sector?collectionName=${industry}&token=${key}`,
         headers: {
             'Content-Type': 'text/event-stream'
         }
@@ -61,6 +67,7 @@ connection.sync({ force: true }).then(() => {
             div_yield: Math.random() * 100
         }));
 
+        // Fetch latest company information from IEX API
         request({
             url: `https://cloud.iexapis.com/v1/stock/market/batch?types=company&symbols=${symbols}&token=${key}`,
             headers: {
@@ -69,13 +76,16 @@ connection.sync({ force: true }).then(() => {
         }, (req, res, body) => {
             var data = JSON.parse(body);
 
-            var extractedInfo = Object.keys(data).slice(0, 100).map((ticker, i) => {
+            Object.keys(data).slice(0, 100).forEach((ticker, i) => {
                 mappedData[i].ceo = data[ticker].company.CEO;
                 mappedData[i].employees = data[ticker].company.employees || Math.random() * 500000;
                 mappedData[i].about = data[ticker].company.description;
             });
+            // Populate the stocks table
             Stocks.bulkCreate(mappedData);
         });
+
+        // Generate dummy data for the EPS table
         const startYear = 2017;
         const endYear = 2018;
         var epsData = [];
@@ -93,6 +103,7 @@ connection.sync({ force: true }).then(() => {
                 }
             }
         });
+        // Populate the eps_ratio table
         EpsRatio.bulkCreate(epsData);
     });
 });
