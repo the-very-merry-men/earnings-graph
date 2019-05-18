@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var connection = require('../database');
 
-const EpsRatio = connection.define('eps_ratio', {
+const EpsRatios = connection.define('eps_ratio', {
     stock_id: Sequelize.INTEGER,
     year: Sequelize.INTEGER,
     quarter: Sequelize.INTEGER,
@@ -35,5 +35,5 @@ const Stocks = connection.define('stocks', {
 
 module.exports = {
     Stocks,
-    EpsRatio
+    EpsRatios
 }

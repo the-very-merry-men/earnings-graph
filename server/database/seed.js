@@ -66,6 +66,6 @@ connection.sync({ force: true }).then(() => {
             }
         });
         // Populate the eps_ratio table
-        models.EpsRatio.bulkCreate(epsData);
+        models.EpsRatios.bulkCreate(epsData);
     });
 });
