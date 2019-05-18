@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'dinpro';
+    src: url('fonts/dinpro.otf');
+}
+
+body {
+    font-family: 'dinpro';
+    font-size: 12px;
+}
+.grid {
+    stroke: #aaa;
+    stroke-width: 0.2;
+}
+
+h1:after {
+    content:'';
+    display:block;
+    margin-top:10px;
+    border-bottom:1px solid #aaa;
+}

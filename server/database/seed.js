@@ -1,46 +1,8 @@
 const Sequelize = require('sequelize');
 const request = require('request');
 const key = require('../config/api_key.js');
-
-// CONNECT TO DATABASE
-var connection = new Sequelize('front_end', 'root', 'Umairnadeem_1', {
-    dialect: 'mysql', dialectOptions: {
-        supportBigNumbers: true
-    }
-});
-
-// INITIALIZE TABLES
-var Stocks = connection.define('stocks', {
-    name: Sequelize.STRING,
-    ticker: Sequelize.STRING,
-    price: {
-        type: Sequelize.DECIMAL(10, 2)
-    },
-    about: Sequelize.TEXT,
-    buy_rating: Sequelize.INTEGER,
-    rh_owners: Sequelize.INTEGER,
-    ceo: Sequelize.STRING,
-    market_cap: Sequelize.BIGINT,
-    employees: Sequelize.INTEGER,
-    pe_ratio: {
-        type: Sequelize.DECIMAL(10, 2)
-    },
-    div_yield: {
-        type: Sequelize.DECIMAL(10, 2)
-    }
-});
-
-var EpsRatio = connection.define('eps_ratio', {
-    stock_id: Sequelize.INTEGER,
-    year: Sequelize.INTEGER,
-    quarter: Sequelize.INTEGER,
-    actual_eps: {
-        type: Sequelize.DECIMAL(10, 2)
-    },
-    expected_eps: {
-        type: Sequelize.DECIMAL(10, 2)
-    }
-});
+const connection = require('./index.js');
+const models = require('../models');
 
 // BEGIN SEEDING DATA
 connection.sync({ force: true }).then(() => {
@@ -82,7 +44,7 @@ connection.sync({ force: true }).then(() => {
                 mappedData[i].about = data[ticker].company.description;
             });
             // Populate the stocks table
-            Stocks.bulkCreate(mappedData);
+            models.Stocks.bulkCreate(mappedData);
         });
 
         // Generate dummy data for the EPS table
@@ -104,10 +66,6 @@ connection.sync({ force: true }).then(() => {
             }
         });
         // Populate the eps_ratio table
-        EpsRatio.bulkCreate(epsData);
+        models.EpsRatio.bulkCreate(epsData);
     });
 });
-
-module.exports = {
-    connection
-};
