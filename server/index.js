@@ -7,8 +7,7 @@ const port = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/../client/public'));
 
-app.get('/api/:stock/earnings', (req, res) => {
-    // res.send(req.params.stock);
+app.get('/api/stock/:stock/earnings', (req, res) => {
     controllers.getEarnings(req.params.stock, data => {
         res.send(data);
     });

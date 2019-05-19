@@ -13,7 +13,7 @@ const getEarnings = (ticker, callback) => {
             }
         }))
         .then(data => callback(data))
-    .catch(error => callback(error));
+        .catch(error => callback(error));
 }
 
 module.exports = {

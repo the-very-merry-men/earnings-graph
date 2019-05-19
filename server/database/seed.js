@@ -1,4 +1,3 @@
-const Sequelize = require('sequelize');
 const request = require('request');
 const key = require('../config/api_key.js');
 const connection = require('./index.js');
@@ -15,7 +14,7 @@ connection.sync({ force: true }).then(() => {
         headers: {
             'Content-Type': 'text/event-stream'
         }
-    }, (req, res, body) => {
+    }, (_req, _res, body) => {
         var data = JSON.parse(body);
         symbols = data.slice(0, 100).map(iex => iex['symbol']).join(',');
         var mappedData = data.slice(0, 100).map(iex => ({
@@ -35,7 +34,7 @@ connection.sync({ force: true }).then(() => {
             headers: {
                 'Content-Type': 'text/event-stream'
             }
-        }, (req, res, body) => {
+        }, (_req, _res, body) => {
             var data = JSON.parse(body);
 
             Object.keys(data).slice(0, 100).forEach((ticker, i) => {
