@@ -1,14 +1,14 @@
+import React, { Component } from 'react';
 import Point from './Point.jsx';
-import $ from 'jquery';
 import Yaxis from './Yaxis.jsx';
 import Xaxis from './Xaxis.jsx';
 
-class App extends React.Component {
+class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            stock: 'strm',
-            outlook: 'bullish',
+            stock: 'inst',
+            outlook: 'bull',
             height: 300,
             width: 550,
             data: []
@@ -18,11 +18,13 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchData();
+        let stock = this.props.match.params.stock;
+        this.fetchData(stock);
     }
 
-    fetchData() {
-        fetch(`/api/stock/${this.state.stock}/earnings`)
+    fetchData(stock) {
+        // debugger;
+        fetch(`/api/stocks/${stock}/earnings`)
             .then(res => res.json())
             .then(data => this.setState({ data }));
     }
@@ -42,15 +44,16 @@ class App extends React.Component {
             let actY = this.calcY(point.actual_eps);
             let expY = this.calcY(point.expected_eps);
             return (
-                <g>
+                <g key={index}>
                     <Point x={x} y={actY} type={'actual'} outlook={this.state.outlook} />
                     <Point x={x} y={expY} type={'expected'} outlook={this.state.outlook} />
                 </g>
-            )
+            );
         });
     }
 
     render() {
+        
         return (
             <div>
                 <h1>Earnings</h1>
@@ -58,6 +61,8 @@ class App extends React.Component {
                     <g>
                         {this.state.data ? this.generatePoints() : null}
                     </g>
+                    <Xaxis/>
+                    <Yaxis/>
                 </svg>
             </div>
         );
