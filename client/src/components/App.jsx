@@ -19,14 +19,17 @@ class App extends Component {
 
     componentDidMount() {
         let stock = this.props.match.params.stock;
-        this.fetchData(stock);
+        if (stock) {
+            return this.setState({stock}, () => this.fetchData());
+        }
+        this.fetchData();
     }
 
-    fetchData(stock) {
-        // debugger;
-        fetch(`/api/stocks/${stock}/earnings`)
+    fetchData() {
+        fetch(`/api/stocks/${this.state.stock}/earnings`)
             .then(res => res.json())
-            .then(data => this.setState({ data }));
+            .then(data => this.setState({ data }))
+            .catch(err => console.log(err));
     }
 
     calcY(point) {
