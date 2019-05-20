@@ -10,8 +10,10 @@ class App extends Component {
             stock: 'inst',
             outlook: 'bull',
             height: 300,
-            width: 550,
-            data: []
+            width: 680,
+            data: [],
+            xScale: 0.88,
+            yScale: 0.5
         };
 
         this.fetchData = this.fetchData.bind(this);
@@ -37,13 +39,12 @@ class App extends Component {
         let max = Math.max(...points);
         let min = Math.min(...points);
         let range = max - min ? max - min : 0.01;
-        let scale = 0.3;
-        return this.state.height * (1 - scale) / 2 + (this.state.height * scale / range) * (max - point);
+        return this.state.height * (1 - this.state.yScale) / 2 + (this.state.height * this.state.yScale / range) * (max - point);
     }
 
     generatePoints() {
         return this.state.data.map((point, index) => {
-            let x = this.state.width * index / 8 + this.state.width * 0.05;
+            let x = this.state.width * index * this.state.xScale / 8 + this.state.width * (1-this.state.xScale);
             let actY = this.calcY(point.actual_eps);
             let expY = this.calcY(point.expected_eps);
             return (
@@ -64,8 +65,8 @@ class App extends Component {
                     <g>
                         {this.state.data ? this.generatePoints() : null}
                     </g>
-                    <Xaxis/>
-                    <Yaxis/>
+                    <Xaxis data={this.state.data} width={this.state.width} height={this.state.height} scale={this.state.xScale}/>
+                    <Yaxis data={this.state.data} width={this.state.width} height={this.state.height} scale={this.state.yScale}/>
                 </svg>
             </div>
         );
