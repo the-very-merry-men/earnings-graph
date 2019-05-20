@@ -7,7 +7,7 @@
 6 silly lifecycle earnings-chart@1.0.0~prereact-dev: no script for prereact-dev, continuing
 7 info lifecycle earnings-chart@1.0.0~react-dev: earnings-chart@1.0.0
 8 verbose lifecycle earnings-chart@1.0.0~react-dev: unsafe-perm in lifecycle true
-9 verbose lifecycle earnings-chart@1.0.0~react-dev: PATH: /usr/share/npm/bin/node-gyp-bin:/home/umairnadeem/Documents/hack reactor/gits/earnings-chart/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+9 verbose lifecycle earnings-chart@1.0.0~react-dev: PATH: /usr/share/npm/bin/node-gyp-bin:/home/umairnadeem/Documents/hack reactor/gits/earnings-chart/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
 10 verbose lifecycle earnings-chart@1.0.0~react-dev: CWD: /home/umairnadeem/Documents/hack reactor/gits/earnings-chart
 11 silly lifecycle earnings-chart@1.0.0~react-dev: Args: [ '-c', 'webpack -d --watch' ]
 12 silly lifecycle earnings-chart@1.0.0~react-dev: Returned: code: 1  signal: null
