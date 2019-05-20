@@ -8,7 +8,7 @@ class App extends Component {
         super(props);
         this.state = {
             stock: 'inst',
-            outlook: 'bull',
+            outlook: 'bear',
             height: 300,
             width: 680,
             data: [],
@@ -49,8 +49,8 @@ class App extends Component {
             let expY = this.calcY(point.expected_eps);
             return (
                 <g key={index}>
-                    <Point x={x} y={actY} type={'actual'} outlook={this.state.outlook} />
-                    <Point x={x} y={expY} type={'expected'} outlook={this.state.outlook} />
+                    <Point x={x} y={actY} type={'actual'} outlook={this.state.outlook} value={point.actual_eps}/>
+                    <Point x={x} y={expY} type={'expected'} outlook={this.state.outlook} value={point.expected_eps}/>
                 </g>
             );
         });
