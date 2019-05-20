@@ -11,9 +11,9 @@ const getEarnings = (ticker, callback) => {
             where: {
                 stock_id: data[0].id
             }
-        }))
-        .then(data => callback(data))
-        .catch(error => callback(error));
+    }))
+    .then(data => callback(data))
+    .catch(error => callback(error));
 }
 
 module.exports = {
