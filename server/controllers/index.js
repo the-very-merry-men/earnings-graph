@@ -1,4 +1,3 @@
-const connection = require('../database');
 const models = require('../models');
 
 const getEarnings = (ticker, callback) => {
