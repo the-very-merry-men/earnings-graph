@@ -21,7 +21,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const stock = this.props.match.params.stock;
+    let match = window.location.pathname.match(/\/stocks\/(\w+)/i);
+    const stock = match ? match[1] : null;
     if (stock) {
       return this.setState({stock}, () => this.fetchData());
     }
@@ -57,7 +58,7 @@ class App extends Component {
     });
   }
 
-  render() {  
+  render() {
     return (
       <div>
       <h1>Earnings</h1>
