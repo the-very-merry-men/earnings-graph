@@ -1,25 +1,26 @@
 @font-face {
-    font-family: 'dinpro';
-    src: url('fonts/dinpro.otf');
+  font-family: 'dinpro';
+  src: url('fonts/dinpro.otf');
 }
 
 body {
-    font-family: 'dinpro';
-    font-size: 12px;
-}
-.grid {
-    stroke: #aaa;
-    stroke-width: 0.2;
+  font-family: 'dinpro';
+  font-size: 12px;
 }
 
 h1 {
-    margin-bottom:0;
+  margin-bottom:0;
 }
 
 h1:after {
-    content:'';
-    display:block;
-    margin-top:10px;
-    margin-bottom: 0;
-    border-bottom:1px solid #aaa;
+  content:'';
+  display:block;
+  margin-top:10px;
+  margin-bottom: 0;
+  border-bottom:1px solid #cbcbcd;
+  opacity: 0.3;
+}
+
+svg {
+  display: block;
 }

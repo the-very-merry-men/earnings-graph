@@ -13,7 +13,7 @@ const Yaxis = (props) => {
   let dollar = (n) => n < 0 ? `-$${Math.abs(n).toFixed(2)}` : `$${n.toFixed(2)}`;
   return (
     <g>
-      {axis.map((label, index) => <text key={index} y={constant + coefficient * index}>{label ? dollar(label) : dollar((min*(resolution - 1) + max) * index / resolution) }</text>)}
+      {axis.map((label, index) => <text fill="#cbcbcd" key={index} y={constant + coefficient * index}>{label ? dollar(label) : dollar((min*(resolution - 1) + max) * index / resolution) }</text>)}
     </g>
   );
 }
