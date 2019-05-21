@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Point from './Point.jsx';
 import Yaxis from './Yaxis.jsx';
 import Xaxis from './Xaxis.jsx';
+import Legend from './Legend.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    let stock = this.props.match.params.stock;
+    const stock = this.props.match.params.stock;
     if (stock) {
       return this.setState({stock}, () => this.fetchData());
     }
@@ -35,18 +36,18 @@ class App extends Component {
   }
 
   calcY(point) {
-    let points = this.state.data.reduce((a, b) => [...a, b.expected_eps, b.actual_eps], []);
-    let max = Math.max(...points);
-    let min = Math.min(...points);
-    let range = max - min ? max - min : 0.01;
+    const points = this.state.data.reduce((a, b) => [...a, b.expected_eps, b.actual_eps], []);
+    const max = Math.max(...points);
+    const min = Math.min(...points);
+    const range = max - min ? max - min : 0.01;
     return this.state.height * (1 - this.state.yScale) / 2 + (this.state.height * this.state.yScale / range) * (max - point);
   }
 
   generatePoints() {
     return this.state.data.map((point, index) => {
-      let x = this.state.width * index * this.state.xScale / 8 + this.state.width * (1-this.state.xScale);
-      let actY = this.calcY(point.actual_eps);
-      let expY = this.calcY(point.expected_eps);
+      const x = this.state.width * index * this.state.xScale / 8 + this.state.width * (1-this.state.xScale);
+      const actY = this.calcY(point.actual_eps);
+      const expY = this.calcY(point.expected_eps);
       return (
         <g key={index}>
           <Point x={x} y={actY} type={'actual'} outlook={this.state.outlook}/>
@@ -67,6 +68,7 @@ class App extends Component {
         <Xaxis data={this.state.data} width={this.state.width} height={this.state.height} scale={this.state.xScale}/>
         <Yaxis data={this.state.data} width={this.state.width} height={this.state.height} scale={this.state.yScale}/>
       </svg>
+      <Legend height={this.state.height} width={this.state.width} scale={this.state.xScale} outlook={this.state.outlook}/>
     </div>
     );
   }
