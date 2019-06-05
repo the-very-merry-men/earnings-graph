@@ -1,8 +1,9 @@
 const Sequelize = require('sequelize');
 
 // CONNECT TO DATABASE
-module.exports = new Sequelize('mysql://root:example@database:3306/earnings_chart', {
+module.exports = new Sequelize('SDC_earnings', 'root', null, {
   dialect: 'mysql',
+  host: 'localhost',
   dialectOptions: {
     supportBigNumbers: true
   }

@@ -30,8 +30,8 @@ class App extends Component {
   }
 
   fetchData() {
-    const url = 'http://ec2-52-14-233-205.us-east-2.compute.amazonaws.com:3000';
-    fetch(`${url}/api/stocks/${this.state.stock}/earnings`)
+    //const url = 'http://ec2-52-14-233-205.us-east-2.compute.amazonaws.com:3000';
+    fetch(`/api/stocks/${this.state.stock}/earnings`)
       .then(res => {
         consol
         res.json()
