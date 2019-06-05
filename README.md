@@ -22,7 +22,12 @@
 
 ## CRUD
 
-
+| method | endpoint | description |
+|--------|----------|-------------|
+| GET | /stocks/:ticker/earnings | retrieves the earnings data for given stock |
+| POST | /stocks/:ticker/earnings | posts earnings data to table |
+| PUT | /stocks/:ticker/earnings/:quarter | updates earnings data for given quarter and year |
+| DELETE | /stocks/:ticker/earnings/:quarter | deletes earnings data for given quarter and year | 
 
 ## Requirements
 
