@@ -22,12 +22,22 @@
 
 ## CRUD
 
-| method | endpoint | description |
+#### Stocks table
+
+| method | endpoint | input | output | description |
 |--------|----------|-------------|
-| GET | /stocks/:ticker/earnings | retrieves the earnings data for given stock |
-| POST | /stocks/:ticker/earnings | posts earnings data to table |
-| PUT | /stocks/:ticker/earnings/:quarter | updates earnings data for given quarter and year |
-| DELETE | /stocks/:ticker/earnings/:quarter | deletes earnings data for given quarter and year | 
+| GET | /stocks/:ticker | ticker string | object for given stock | retrieves stock |
+| POST | /stocks/:ticker | ticker string and stock data object | stock objected added to table | posts new stock to table |
+| PUT | /stocks/:ticker | ticker string and data to updates | updated stock object | updates stock data object |
+| DELETE | /stocks/:ticker | ticker string | deleted object | deletes given stock from db | 
+
+#### Earnings Table
+| method | endpoint | input | output | description |
+|--------|----------|-------------|
+| GET | /stocks/:ticker/earnings | ticker string | earnings object for given stock | retrieves the earnings data for given stock |
+| POST | /stocks/:ticker/earnings | ticker string and earnings object | earnings object added to db | posts earnings data to table |
+| PUT | /stocks/:ticker/earnings?quarter&year | ticker string and quarter and year query and data to update | updated earnings for that quarter and year | updates earnings data for given quarter and year |
+| DELETE | /stocks/:ticker/earnings?quarter&year | ticker string and quarter and year string | deleted object | deletes earnings data for given quarter and year | 
 
 ## Requirements
 
