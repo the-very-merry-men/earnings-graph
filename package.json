@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/math-dot-random/earnings-chart#readme",
   "dependencies": {
+    "babel-loader": "^8.0.6",
     "body-parser": "^1.19.0",
     "css-loader": "^2.1.1",
     "express": "^4.16.4",
@@ -31,6 +32,7 @@
     "react-dom": "^16.8.6",
     "request": "^2.88.0",
     "sequelize": "^5.8.6",
-    "style-loader": "^0.23.1"
+    "style-loader": "^0.23.1",
+    "webpack": "^2.7.0"
   }
 }

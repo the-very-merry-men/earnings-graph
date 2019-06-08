@@ -33,10 +33,13 @@ class App extends Component {
     //const url = 'http://ec2-52-14-233-205.us-east-2.compute.amazonaws.com:3000';
     fetch(`/api/stocks/${this.state.stock}/earnings`)
       .then(res => {
-        consol
+        
         res.json()
       })
-      .then(data => this.setState({ data }))
+      .then(data => {
+        console.log('the earnings gotten back!:', data);
+        this.setState({ data })
+      })
       .catch(err => console.log(err));
   }
 
