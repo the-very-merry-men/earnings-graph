@@ -50,7 +50,7 @@
 | PUT | /stocks/:stock_id/earnings/:year/:quarter | stock id and quarter and year query and data to update | updated earnings for that quarter and year | updates earnings data for given quarter and year |
 | DELETE | /stocks/:ticker/earnings/:year/:quarter | ticker string and quarter and year string | deleted object | deletes earnings data for given quarter and year | 
 
-### Earnings Schema
+#### Earnings Schema
 
 | Earnings |
 |----------|
@@ -69,6 +69,14 @@
 | POST | /stocks/:stock_id/oustanding | stock id and outstanding shares data | data input | adds outstanding shares data for given stock and period |
 | PUT | /stocks/:stock_id/outstanding/:date | stock id and data to update for given date | updated data | updates a oustanding share data entry for given period and stock |
 | DELETE | /stocks/:stock_id/outstanding/:date | stock id and date of data to delete | deleted data | deletes outstanding shares entry for given date |
+
+#### Outstanding Shares Schema
+
+| Outstanding Shares |
+|--------------------|
+| stock_id |
+| outstanding_shares |
+| reported_date |
 
 #### API Flow
 
