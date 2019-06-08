@@ -33,9 +33,12 @@
 
 #### Stocks Schema
 
-|     | stock_id | ticker | lastEPS | lastEPSDate |
-|-----|----------|--------|---------|-------------|
-| stock |     |     |     |     |
+| stocks | 
+|-----|
+| stock_id |
+| ticker |
+| lastEPS |
+| lastEPSDate |
 
 #### Earnings Table API
 
@@ -45,13 +48,18 @@
 | GET | /stocks/:stock_id/earnings?period | stock id number and period | earnings for given stock and period, sorted | retrieves x amount of most recent earnings |
 | POST | /stocks/:stock_id/earnings | stock id and earnings object | earnings object added to db | posts earnings data to table |
 | PUT | /stocks/:stock_id/earnings/:year/:quarter | stock id and quarter and year query and data to update | updated earnings for that quarter and year | updates earnings data for given quarter and year |
-| DELETE | /stocks/:ticker/earnings?quarter&year | ticker string and quarter and year string | deleted object | deletes earnings data for given quarter and year | 
+| DELETE | /stocks/:ticker/earnings/:year/:quarter | ticker string and quarter and year string | deleted object | deletes earnings data for given quarter and year | 
 
 ### Earnings Schema
 
-|     | stock_id | estimated | reported_earnings | outstanding_shares | year | quarter |
-|-----|-----|-----|-----|-----|-----|-----|
-| earning |     |     |     |     |     |    |
+| Earnings |
+|----------|
+| stock_id |
+| estimated |
+| reported_earnings |
+| outstanding_shares |
+| year |
+| quarter |
 
 #### Outstanding Shares History Table API
 
