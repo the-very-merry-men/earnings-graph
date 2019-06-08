@@ -55,7 +55,7 @@
 | Earnings |
 |----------|
 | stock_id |
-| estimated |
+| estimated_eps |
 | reported_earnings |
 | outstanding_shares |
 | year |
