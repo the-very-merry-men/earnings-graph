@@ -6,7 +6,8 @@
   "scripts": {
     "react-dev": "webpack -d --watch",
     "server-dev": "node server/index.js",
-    "seed": "node server/database/seed.js"
+    "seed": "node server/database/seed.js",
+    "seed10m": "node --max-old-space-size=4096 ./server/database/generateData.js"
   },
   "repository": {
     "type": "git",
@@ -34,5 +35,8 @@
     "sequelize": "^5.8.6",
     "style-loader": "^0.23.1",
     "webpack": "^2.7.0"
+  },
+  "devDependencies": {
+    "pg": "^7.11.0"
   }
 }
