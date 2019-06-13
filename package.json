@@ -7,7 +7,8 @@
     "react-dev": "webpack -d --watch",
     "server-dev": "node server/index.js",
     "seed": "node server/database/seed.js",
-    "seed10m": "node --max-old-space-size=4096 ./server/database/generateData.js"
+    "seed10m": "node --max-old-space-size=4096 ./server/database/generateData.js",
+    "seedMongo": "node --max-old-space-size=4096 ./server/database/genMongo.js"
   },
   "repository": {
     "type": "git",
