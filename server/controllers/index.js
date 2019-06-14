@@ -1,18 +1,26 @@
-const models = require('../models');
+// const pool = require('../database/connection.js');
+const Pool = require('pg').Pool;
+
+const pool = new Pool({
+    user: 'sdc',
+    host: 'localhost',
+    database: 'sdc',
+    password: 'password',
+    port: 5432
+});
 
 const getEarnings = (ticker, callback) => {
-    models.Stocks.findAll({
-        attributes: ['id'],
-        where: {
-            ticker
+    const id = parseInt(ticker);
+
+    pool.query('SELECT * FROM earnings WHERE id = $1', [id], (err, data) => {
+        if (err) {
+            console.log('error getting earnings from db!', err);
+            return callback(err);
         }
-    }).then(data => models.EpsRatios.findAll({
-            where: {
-                stock_id: data[0].id
-            }
-    }))
-    .then(data => callback(data))
-    .catch(error => callback(error));
+
+        console.log('got stuff back from db?', data);
+        callback(data);
+    })
 }
 
 module.exports = {

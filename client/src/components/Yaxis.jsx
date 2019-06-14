@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Yaxis = (props) => {
-  let points = props.data.reduce((a, b) => [...a, b.expected_eps, b.actual_eps], []);
+  let points = props.data.reduce((a, b) => [...a, b.lasteps, (b.reported_earnings / b.outstanding_shares)], []);
   let max = Math.max(...points);
   let min = Math.min(...points);
   let resolution = 4;

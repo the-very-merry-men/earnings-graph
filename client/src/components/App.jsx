@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      stock: 'inst',
+      stock: 9000000,
       outlook: 'bull',
       height: 300,
       width: 680,
@@ -33,18 +33,19 @@ class App extends Component {
     //const url = 'http://ec2-52-14-233-205.us-east-2.compute.amazonaws.com:3000';
     fetch(`/api/stocks/${this.state.stock}/earnings`)
       .then(res => {
-        
-        res.json()
+        console.log('returned res data', res);
+        return res.json();
       })
       .then(data => {
         console.log('the earnings gotten back!:', data);
-        this.setState({ data })
+        this.setState({ data: data });
+        
       })
       .catch(err => console.log(err));
   }
 
   calcY(point) {
-    const points = this.state.data.reduce((a, b) => [...a, b.expected_eps, b.actual_eps], []);
+    const points = this.state.data.reduce((a, b) => [...a, b.lasteps, (b.reported_earnings / b.outstanding_shares)], []);
     const max = Math.max(...points);
     const min = Math.min(...points);
     const range = max - min ? max - min : 0.01;
@@ -54,8 +55,8 @@ class App extends Component {
   generatePoints() {
     return this.state.data.map((point, index) => {
       const x = this.state.width * index * this.state.xScale / 8 + this.state.width * (1-this.state.xScale);
-      const actY = this.calcY(point.actual_eps);
-      const expY = this.calcY(point.expected_eps);
+      const actY = this.calcY(point.reported_earnings / point.outstanding_shares);
+      const expY = this.calcY(point.lasteps);
       return (
         <g key={index}>
           <Point x={x} y={actY} type={'actual'} outlook={this.state.outlook}/>

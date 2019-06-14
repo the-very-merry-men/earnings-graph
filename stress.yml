@@ -1,0 +1,11 @@
+config:
+  target: 'http://localhost:3000'
+  phases:
+    - duration: 60
+      arrivalRate: 675
+scenarios:
+  - flow: 
+    - get:
+        url: "/"
+    - get: 
+        url: "/stocks/{{ $randomNumber(7, 10000000) }}/earnings"
