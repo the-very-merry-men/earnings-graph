@@ -1,11 +1,18 @@
 config:
-  target: 'http://localhost:3000'
+  target: 'http://localhost:3003'
   phases:
     - duration: 60
-      arrivalRate: 675
+      arrivalRate: 950
 scenarios:
-  - flow: 
-    - get:
-        url: "/"
+  - flow:     
     - get: 
-        url: "/stocks/{{ $randomNumber(7, 10000000) }}/earnings"
+        url: "/api/stocks/{{ $randomNumber(7, 10000000) }}/earnings"
+    - post:
+        url: "/api/stocks/{{ $randomNumber(10000000, 20000000) }}/earnings"
+        json: 
+          lasteps: "{{ $randomNumber(1, 4) }}"
+          reported_earnings: "{{ $randomNumber(100000000, 900000000) }}"
+          outstanding_shares: "{{ $randomNumber(100000000, 900000000) }}"
+          year: "{{ $randomNumber(2017, 2019) }}"
+          quarter: "{{ $randomNumber(1, 4) }}"
+      
